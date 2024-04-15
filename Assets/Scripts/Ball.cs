@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] AnimController anim;
     [SerializeField] Rigidbody rb;
-    [SerializeField] Transform ballTransform;
-    [SerializeField] float distanceY;
-    //bool isOnGround;
+    [SerializeField] float forceY;
+    [SerializeField] int _currentStreak;
+    bool _bouncing;
 
-
-    private void FixedUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(ballTransform.position, Vector3.down, out RaycastHit hit, distanceY))
+        if (collision.GetContact(0).point.y < transform.position.y)
         {
-            if (hit.collider.TryGetComponent(out Helix helix))
-            {
-                if (!helix.isBreakable && ballTransform.position == transform.position)
-                {
-                    rb.isKinematic = true;
-                    anim.Bounce();
-                }
-            }
+            rb.velocity = new Vector3(0, forceY);
+            _bouncing = true;
         }
     }
 
-    private void Update()
+    public void ResetStreak()
     {
-        if (ballTransform.position == transform.position)
-        {
-            rb.velocity = new(0, -9.8f, 0);
-            rb.isKinematic = false;
-        }
-
+        _currentStreak = 0;
     }
+
+    public bool IsBouncing()
+    {
+        return _bouncing;
+    }
+
+    public void StopBouncing()
+    {
+        _bouncing = false;
+    }
+
+    public void AddStreak()
+    {
+        _currentStreak++;
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (Vector3.Distance(transform.position, other.bounds.center) < 0.01f)
+    //    {
+    //        _triggerDetected = true;
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (_triggerDetected)
+    //    {
+    //        if (rb.velocity.y < 0)
+    //        {
+    //            _currentStreak++;
+    //        }
+    //        _triggerDetected = false;
+    //    }
+    //}
+
+
 }
