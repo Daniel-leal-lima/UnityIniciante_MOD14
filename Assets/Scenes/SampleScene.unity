@@ -532,8 +532,10 @@ MonoBehaviour:
   helixGOPrefab: {fileID: 947663351461160192, guid: e5b143a35cbd3e84480e8612bba58a3b, type: 3}
   endingZoneGOPrefab: {fileID: 1595046517093996293, guid: 88840c16b3068fa44aa7fa9b3d68ed5f, type: 3}
   numberOfHelices: 5
-  offset: 50
+  offset: 7
   test: 0
+  minSlices: 1
+  maxSlices: 5
 --- !u!1 &936989686
 GameObject:
   m_ObjectHideFlags: 0

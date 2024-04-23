@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Transform[] childs;
+    Transform[] childs;
     void Start()
     {
         childs = new Transform[transform.childCount];

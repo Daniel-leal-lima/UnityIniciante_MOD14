@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4552752694739404540}
-  - component: {fileID: 4394962067840702711}
   - component: {fileID: 1969132174264345858}
   m_Layer: 0
   m_Name: Helix
@@ -45,18 +44,6 @@ Transform:
   - {fileID: 3982888977059007932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4394962067840702711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947663351461160192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b060bc366266d9f4ea981a79cc493b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1969132174264345858
 MonoBehaviour:
   m_ObjectHideFlags: 0
