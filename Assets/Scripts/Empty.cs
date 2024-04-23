@@ -8,7 +8,6 @@ public class Empty : MonoBehaviour
 
     void Start()
     {
-
         Helix[] allHelices = GetComponentsInChildren<Helix>();
         List<MeshFilter> meshFilters = new List<MeshFilter>();
 
@@ -20,23 +19,7 @@ public class Empty : MonoBehaviour
             }
         }
 
-
-        //MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        CombineInstance[] combine = new CombineInstance[meshFilters.Count];
-
-        for (int i = 0; i < meshFilters.Count; i++)
-        {
-
-            combine[i].mesh = meshFilters[i].sharedMesh;
-            Matrix4x4 parentTransform = transform.worldToLocalMatrix;
-            combine[i].transform = parentTransform * meshFilters[i].transform.localToWorldMatrix;
-            meshFilters[i].gameObject.SetActive(false);
-        }
-
-        Mesh combinedMesh = new Mesh();
-        combinedMesh.CombineMeshes(combine, true, true);
-
-        combinedMesh.Optimize();
+        Mesh combinedMesh = MeshCombiner.Combine(meshFilters.ToArray(), transform);
 
         MeshCollider mc = gameObject.AddComponent<MeshCollider>();
         mc.sharedMesh = combinedMesh;
@@ -54,14 +37,9 @@ public class Empty : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (ball != null && !ball.IsBouncing()) ball.AddStreak();
-        //if (_triggerDetected)
-        //{
-        //    if (rb.velocity.y < 0)
-        //    {
-        //        _currentStreak++;
-        //    }
-        //    _triggerDetected = false;
-        //}
+        if (ball != null && !ball.IsBouncing())
+        {
+            ball.AddStreak();
+        }
     }
 }

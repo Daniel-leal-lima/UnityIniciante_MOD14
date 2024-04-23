@@ -15,6 +15,15 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = new Vector3(0, forceY);
             _bouncing = true;
+
+            if (_currentStreak >= 2)
+            {
+                if(collision.transform.parent.TryGetComponent(out DestroyHandler script))
+                {
+                    StartCoroutine(script.Destroy());
+                }
+            }
+            ResetStreak();
         }
     }
 
@@ -25,6 +34,7 @@ public class Ball : MonoBehaviour
 
     public bool IsBouncing()
     {
+
         return _bouncing;
     }
 
@@ -37,25 +47,5 @@ public class Ball : MonoBehaviour
     {
         _currentStreak++;
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (Vector3.Distance(transform.position, other.bounds.center) < 0.01f)
-    //    {
-    //        _triggerDetected = true;
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (_triggerDetected)
-    //    {
-    //        if (rb.velocity.y < 0)
-    //        {
-    //            _currentStreak++;
-    //        }
-    //        _triggerDetected = false;
-    //    }
-    //}
-
 
 }
