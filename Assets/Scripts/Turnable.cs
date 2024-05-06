@@ -5,9 +5,10 @@ using UnityEngine;
 public class Turnable : MonoBehaviour
 {
     [SerializeField] float force;
+
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && GameManager.isPlaying)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)

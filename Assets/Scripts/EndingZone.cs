@@ -20,6 +20,7 @@ public class EndingZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Time.timeScale = 0;
+            GameManager.isPlaying = false;
             Instantiate(finishPrefab);
         }
     }

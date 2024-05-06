@@ -46,6 +46,7 @@ public class Ball : MonoBehaviour
     public void AddStreak()
     {
         _currentStreak++;
+        GameManager.currStreak = _currentStreak;
     }
 
 }
